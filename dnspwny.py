@@ -41,6 +41,9 @@ def banner():
                      /_/                  /____/   
 
 	0.1 - 2023-04-02 - Initial release
+    0.2 - 2023-06-03 - Rebranding...
+
+    Features: DNS subdomain enumeration ( with a progress bar, yay!)
 
 	TODOs:
 
