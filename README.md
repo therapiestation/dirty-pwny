@@ -1,6 +1,6 @@
 # dirty-pwny
 A personal project for scripts and tools
-## dnspwny.py
+## DNSpwny
 Yet another DNS enumaration tool (with progress bar, yay!)
 ### Requirements
 Execute the following command to install the necessary requirements for the script to run.
