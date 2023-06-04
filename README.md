@@ -18,7 +18,7 @@ The following parameters are currently supported:
     /_____/_/ |_//____/ .___/|__/|__/_/ /_/\__, /  
                      /_/                  /____/   
 	
-usage: DirtyPony [-h] -d DOMAIN -n NAMESERVER [-q QUERYTYPE] -w WORDLIST
+usage: ./dnspwny.py [-h] -d DOMAIN -n NAMESERVER [-q QUERYTYPE] -w WORDLIST
 
 Enumerates DNS records
 
