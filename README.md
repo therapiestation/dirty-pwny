@@ -1,4 +1,4 @@
-# DNSpwny
+# dirty-pwny
 A personal project for scripts and tools
 ## dnspwny.py
 Yet another DNS enumaration tool (with progress bar, yay!)
