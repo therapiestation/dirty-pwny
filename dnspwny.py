@@ -100,6 +100,9 @@ with alive_bar(len_items, title='Processing', bar='filling', spinner='waves2', e
 	for i in range(len(lines)):
 			testquery = lines[i]+testdomain
 			try:
+				# set current query
+				bar.text(testquery)
+				# exec query
 				retval = dns_query_specific_nameserver(query=testquery,qtype=str(querytype),nameserver=nameserver)
 				print("[+]"+"\t"+"Line: " +str(bar.current)+"\t"+testquery+" "+querytype+" "+retval)
 			except Exception as e:
