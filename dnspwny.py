@@ -5,7 +5,7 @@ import progressbar
 import dns.resolver
 import argparse
 
-from time import sleep
+from alive_progress import alive_bar
 
 #
 # functions
@@ -80,6 +80,7 @@ args = parser.parse_args()
 # load subdomains from wordlist in lines
 with open(args.wordlist.name) as wordlist:
 	lines = wordlist.read().splitlines()
+len_items = len(lines)
 
 # go for it
 testdomain = "."+args.domain
@@ -92,25 +93,27 @@ querytype = args.querytype
 
 nameserver = args.nameserver
 
+
 print("[-]"+"\t"+"Starting brute force subdomain enumeration with "+testdomain)
 
-for i in progressbar.progressbar(range(len(lines)), redirect_stdout=True):
-
-	testquery = lines[i]+testdomain
-
-	try:
-		retval = dns_query_specific_nameserver(query=testquery,qtype=str(querytype),nameserver=nameserver)
-		print("[+]"+"\t"+testquery+" "+querytype+" "+retval)
-	except Exception as e:
-		if "The DNS query name does not exist:" not in str(e):
-			print("[!]"+"\t"+str(e))
-		pass
-	except KeyboardInterrupt:
-		print("[!]"+"\tCtrl-C detected, aborting script")
-		break
-	else:
-		pass
-	finally:
-		pass
+with alive_bar(len_items, title='Processing', bar='filling', spinner='waves2', enrich_print=False) as bar:
+	for i in range(len(lines)):
+			testquery = lines[i]+testdomain
+			try:
+				retval = dns_query_specific_nameserver(query=testquery,qtype=str(querytype),nameserver=nameserver)
+				print("[+]"+"\t"+"Line: " +str(bar.current)+"\t"+testquery+" "+querytype+" "+retval)
+			except Exception as e:
+				if "The DNS query name does not exist:" not in str(e):
+					print("[!]"+"\t"+str(e))
+				pass
+			except KeyboardInterrupt:
+				print("[!]"+"\tCtrl-C detected, aborting script")
+				break
+			else:
+				pass
+			finally:
+				bar()
+				pass
 
 print("[-]"+"\t"+"Finished brute force subdomain enumeration with "+testdomain)	
+
