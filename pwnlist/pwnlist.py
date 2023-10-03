@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-pwlist = ["dumbledore", "hermione"]
+pwlist = ["hogwarts"]
 charlist = ["@", "$", "!"]
 mutatedlist = []
 charmutlist = []
